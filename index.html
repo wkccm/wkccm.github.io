@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>博客基于Node.js构建，创建博客前需要一些准备工作</p>
+        <h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>博客基于Node.js构建，创建博客前需要一些准备工作</p>
 <p>首先从<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a> 上下载Node.js并安装</p>
 <p>启动cmd，查看node版本，命令：node -v或node –version</p>
 <p>查看npm版本</p>
@@ -101,6 +101,19 @@
 <p>建立后用hexo s可以启动博客预览</p>
 <p>cd到source文件夹中，查看md文件，可以进行编辑（vim或是typora）</p>
 <p>编辑之后需要重新生成，hexo clean清理，hexo g重新生成</p>
+<h1 id="远端部署"><a href="#远端部署" class="headerlink" title="远端部署"></a>远端部署</h1><p>登录github，创建new repository，名称为”用户名.github.io”</p>
+<p>cmd中输入命令：cnpm install –save hexo-deployer-git</p>
+<p>进入_config.yml文件，在尾部进行修改：</p>
+<ul>
+<li>type:+空格+git</li>
+<li>repo:+空格+github上的地址如： <a href="https://github.com/wkccm/wkccm.github.io.git" target="_blank" rel="noopener">https://github.com/wkccm/wkccm.github.io.git</a> </li>
+<li>branch:+空格+master</li>
+</ul>
+<p>部署到远端：hexo d</p>
+<ul>
+<li>此处若出现error，根据提示输入相应命令，并输入用户名与邮箱及密码等</li>
+</ul>
+<p>然后打开<a href="https://wkccm.github.io/" target="_blank" rel="noopener">https://wkccm.github.io/</a> 即可在远端查看博客</p>
 
       
     </div>

@@ -64,6 +64,496 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MySQL知识点归纳" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/" class="article-date">
+  <time datetime="2020-07-25T05:43:33.894Z" itemprop="datePublished">2020-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/">MySQL知识点归纳</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="P1"><a href="#P1" class="headerlink" title="P1"></a>P1</h1><p>数据库的好处：</p>
+<ul>
+<li>持久化数据到本地</li>
+<li>可以实现结构化查询，方便管理</li>
+</ul>
+<p>数据库相关概念：</p>
+<ul>
+<li>DB：数据库，保存一组有组织的数据的容器</li>
+<li>DBMS：数据库管理系统，即数据库软件，用于管理</li>
+<li>SQL：结构化查询语言，与DBMS沟通的语言</li>
+</ul>
+<p>数据库的特点：</p>
+<ul>
+<li>数据放到表中，表再放到库中</li>
+<li>一个数据库可以有多个表，每个表都有自己的名字，有唯一性</li>
+<li>表具有一些特性，这些特性定义了数据在表中如何存储</li>
+<li>表由列组成</li>
+<li>表中的数据按行存储</li>
+</ul>
+<p>MySQL优点：</p>
+<ul>
+<li>成本低，开源</li>
+<li>性能快</li>
+<li>安装简单</li>
+</ul>
+<p>DBMS分类：</p>
+<ul>
+<li>基于共享文件系统的DBMS</li>
+<li>基于客户机——服务器的DBMS</li>
+</ul>
+<p>MySQL服务的登录和退出</p>
+<ul>
+<li>方式一：通过mysql自带的客户端</li>
+<li>方式二：通过windows客户端，mysql 【-h主机名 -P端口号】-u用户名 -p密码</li>
+<li>退出：exit或Ctrl+C</li>
+</ul>
+<p>MySQL的常见命令：</p>
+<ul>
+<li>查看当前所有数据库：show database</li>
+<li>打开指定的库：use 库名</li>
+<li>查看当前库的所有表：show tables</li>
+<li>查看其他库的所有表：show tables from 库名</li>
+<li>创建表：create table 表名（列名 列类型，列名 列类型）；</li>
+<li>查看表结构：desc 表名</li>
+<li>查看服务器版本：在内部select version（）；在外部mysql –version或mysql -V</li>
+</ul>
+<p>MySQL语法规范：</p>
+<ul>
+<li>不区分大小写，但建议关键字大写，表名、列名小写</li>
+<li>每行命令最好用分号结尾</li>
+<li>可以根据需要缩进和换行</li>
+<li>注释：单行注释#或–空格；多行注释/* */</li>
+</ul>
+<h1 id="P2"><a href="#P2" class="headerlink" title="P2"></a>P2</h1><p>基础查询：select 查询列表 from 表名</p>
+<p>基础查询全部：select * from 表名</p>
+<p>查询常量值：select 常量</p>
+<p>查询函数：select version()</p>
+<p>起别名：select 内容 as 别名，as可用空格替代</p>
+<p>去重：select distinct XXX from XXX</p>
+<p>MySQL中+号的功能：只能作运算符</p>
+<ul>
+<li>当其中一方为字符型时，首先将字符型转化为数值型</li>
+<li>如果转换成功，则继续做加法运算</li>
+<li>如果转换失败，则将字符型数值转换为0</li>
+<li>只要其中一方为null，则结果肯定为null</li>
+</ul>
+<p>拼接：select concat（XXX，XXX）as 别名</p>
+<p>判断函数： ifnull（A，B）若A是null则返回B</p>
+<p>条件查询：</p>
+<ul>
+<li>select 查询列表 from 表名 where 筛选条件</li>
+<li>按条件表达式筛选</li>
+<li>按逻辑表达式筛选</li>
+<li>模糊查询</li>
+<li><ul>
+<li>like：与通配符一起使用（%任意多个字符，_任意单个字符，配合转义\使用）可以自己设置转义字符（后面加escape 转义字符）</li>
+<li>between and：在XXX与XXX之间，包含临界值，临界值不能颠倒</li>
+<li>in：in（XXX，XXX）属于列表中的某一项，不支持通配符</li>
+<li>is null/is not null：判断是否为null（等号是判断不了的）补充：安全等于&lt;=&gt;两者均可</li>
+</ul>
+</li>
+</ul>
+<h1 id="P3"><a href="#P3" class="headerlink" title="P3"></a>P3</h1><p>排序查询：select 查询列表 from表 【where 筛选条件】order by 排序列表 asc/desc（若不写，默认升序）可以按表达式、函数、多个字段排序，一般放在查询语句的最后面（limit除外）</p>
+<p>字符函数：length获取参数值的字节个数</p>
+<p>拼接字符串：concat</p>
+<p>upper、lower：变大小写</p>
+<p>substr、substring：截取字符串（MySQL中索引从1开始）</p>
+<ul>
+<li>select substr（XXX，a）从索引a处截取后面所有长度</li>
+<li>select substr（XXX，a，b）从a截取到b</li>
+</ul>
+<p>instr：返回子串第一次出现的索引instr（XXX，a）</p>
+<p>trim：移除前后的目标子串：trim（a from XXX）</p>
+<p>lpad：左填充lpad（XXX，a，X）用X填到长度为a</p>
+<p>rpad：右填充</p>
+<p>replace：替换replace（XXX，a，b）将a替换为b</p>
+<p>round：</p>
+<ul>
+<li>四舍五入取整round（X）</li>
+<li>四舍五入到小数点后a位round（X，a）</li>
+</ul>
+<p>ceil：向上取整</p>
+<p>floor：向下取整</p>
+<p>truncate：截断到小数点后a位truncate（XXX，a）</p>
+<p>mod：取余，余数符号与被除数一致</p>
+<p>now：返回当前系统日期+时间</p>
+<p>curdate：返回当前系统日期、不包含时间</p>
+<p>curtime：返回当前时间、不包含日期</p>
+<p>select year（now（））：获取指定部分</p>
+<p>str_to_date：将日期格式的字符转成日期</p>
+<p>select str_to_date（‘1998-3-2’，‘%Y-%c-%d’）</p>
+<p>date_format（now（），‘XXX’）将日期转换成字符</p>
+<p>select databases（）查看当前数据库</p>
+<p>select user（）查看用户</p>
+<p>select if（X，a，b）若X成立则a，否则为b</p>
+<p>分支判等：case 要判断的字段或表达式when 常量1 then 显示的值或语句 else显示的值或语句 end</p>
+<p>分支条件：case when条件1 then显示的值或语句else显示的值或语句end</p>
+<p>sum求和、avg平均值、max最大值、min最小值、count计算个数</p>
+<p>sum和avg忽略null值</p>
+<h1 id="P4、5"><a href="#P4、5" class="headerlink" title="P4、5"></a>P4、5</h1><p>sum求和、avg平均值、max最大值、min最小值、count计算个数：都可以与distinct搭配实现去重</p>
+<p>count （*）统计行数，可以统计所有不是全为null的行数</p>
+<p>count （1）统计行数，可以统计所有不是全为null的行数</p>
+<p>一般用count（*）计数</p>
+<p>和分组函数一同查询的字段会截断</p>
+<p>datediff （a，b）计算b经过多少天到a</p>
+<p>group by分组查询，在where之后，order之前，后接having可以进行分组后的条件筛选</p>
+<p>分组后筛选的筛选条件是分组后计算得到的结果</p>
+<p>group by可以按多个字段进行分组，分组更细致</p>
+<p>连接查询：又称多表查询，查询的字段来自多个表</p>
+<p>笛卡尔乘积现象：行乘算，结果行数过多</p>
+<p>解决笛卡尔乘积需要添加where条件（A.b=C.d）</p>
+<p>为表起别名：</p>
+<ul>
+<li>提高了语句的简洁度</li>
+<li>区分多个重名的字段</li>
+<li>若为表起了别名，则查询的字段就不能使用原来的表名去限定</li>
+</ul>
+<p>n表连接至少需要n-1个连接条件</p>
+<p>自连接：给表起多个别名</p>
+<p>sql99语法：</p>
+<ul>
+<li>select查询列表 from表1 别名 【连接类型】join表2 别名on连接条件</li>
+<li>内连接，连接类型为inner，inner可以省略</li>
+<li>外连接的查询结果为主表中的所有记录，表中有匹配的，则显示匹配的值，若没有则显示null。左外连接，left join左边的是主表，right join右边的是主表，全外连接MySQL不支持</li>
+<li>交叉连接cross join 笛卡尔积</li>
+</ul>
+<p>sql92 VS sql99：sql支持的较多，实现了连接条件和筛选条件的分离</p>
+<h1 id="P6"><a href="#P6" class="headerlink" title="P6"></a>P6</h1><p>标量子查询：嵌套select</p>
+<p>列子查询（多行子查询）</p>
+<p>行子查询（结果集一行多列或多行多列）：当比较操作符相同时进行合并，具有局限性</p>
+<p>select后的子查询只支持一行一列</p>
+<p>from后面的子查询</p>
+<p>exist相关子查询</p>
+<p>分页查询：加在最后limit offset，size；offset要显示条目的起始索引（从0开始），size要显示的条目个数</p>
+<p>执行先后顺序：</p>
+<p>*<em>7  *</em>select 查询列表</p>
+<p>*<em>1  *</em> from 表</p>
+<p>*<em>2  *</em> 连接类型 join 表2</p>
+<p>*<em>3  *</em> on连接条件</p>
+<p>*<em>4  *</em> where 筛选条件</p>
+<p>*<em>5  *</em> group by分组列表</p>
+<p>*<em>6  *</em> having 分组后的筛选</p>
+<p>*<em>8  *</em> order by 排序列表</p>
+<p>*<em>9  *</em> limit 偏移，条目数</p>
+<p>联合查询：将多条查询语句的结果合并成一个结果，查询1 union 查询2 union……，列数需要一致，会自动去重，union all可不去重</p>
+<p>DML语言：数据操作语言，插入、删除、修改</p>
+<p>插入语句一：insert into 表名（列名，……）values（值1，……）</p>
+<ul>
+<li>插入的值要与类型兼容</li>
+<li>不可以为null的列必须插入值，可以为null的列可插入null或跳过或不写对应的列名</li>
+<li>列的顺序可以调换</li>
+<li>列数和值的个数必须相等</li>
+<li>可以省略列名，默认顺序所有列</li>
+</ul>
+<p>插入语句二：insert into 表名 set A=a，B=b……</p>
+<p>方法一VS方法二：</p>
+<ul>
+<li>方法一支持插入多行，方法二不支持</li>
+<li>方法一支持子查询，方法二不支持</li>
+</ul>
+<h1 id="P7"><a href="#P7" class="headerlink" title="P7"></a>P7</h1><p>修改语句：</p>
+<ul>
+<li>修改单表的内容：update 表名 set 列=新值，……where 筛选条件</li>
+<li>修改多表的内容：update 表名1 别名 join 表2 别名 on连接条件 set A=a …… where 筛选条件</li>
+</ul>
+<p>删除：</p>
+<ul>
+<li>单表删除 delete from 表名 where 筛选条件</li>
+<li>清空整张表 truncate table 表名</li>
+<li>删除多表 delete 表名 from 表1 join 表2 on 连接条件where 筛选条件</li>
+<li>delete删除后插入数据，自增值从断点开始，truncate从1开始</li>
+<li>truncate没有返回值，delete有返回值（剩余的行数）</li>
+<li>truncate删除不能回滚，delete可以回滚</li>
+</ul>
+<p>DDL数据定义语言：对库和表的创建、修改、删除</p>
+<p>库的创建：create database 【if not exist】库名</p>
+<p>更改库的字符集： alter database 库名 character set 字符集名</p>
+<p>库的删除： drop database 【if exist】库名</p>
+<p>表的创建：create table 【if not exist】表名（列名 列的类型【长度约束】）</p>
+<p>修改列名：alter table 表名 change column 原列名 新列名 列的类型</p>
+<p>修改列的类型或约束：alter table 表名 modify column 列名 新类型或约束</p>
+<p>添加新列：alter table 表名 add column 列名 列的类型</p>
+<p>删除列：alter table 表名 drop column 列名</p>
+<p>修改表名：alter table 表名 rename to 新表名</p>
+<p>表的删除：drop table 【if exist】表名</p>
+<p>仅仅复制表的结构：create table 新表名 like 旧表名</p>
+<p>复制表的结构和数据：create table 新表名 select * from 旧表名</p>
+<p>只复制表的部分数据：create table 新表名  select A ，B from 旧表名 where 筛选条件</p>
+<p>常见的数据类型：整形</p>
+<p>整形：</p>
+<ul>
+<li>每种都有无符号和有符号两种类型</li>
+<li>如果不设置无符号还是有符号，默认为有符号</li>
+<li>设置无符号需要追加unsigned</li>
+<li>若插入数值超出范围，则报out of range警告，且设置为临界值</li>
+<li>如果不设置显示长度，会有默认的长度，zerofill零填充，如int（7） zerofill unsigned，且使用zerofill直接自动转成无符号数</li>
+</ul>
+<p>小数：float/double（浮）decimal/dec（定）</p>
+<ul>
+<li>M：整数部分+小数部分</li>
+<li>D：小数部分</li>
+<li>如果超出范围，则插入临界值</li>
+<li>M和D都可以省略，如果是decimal，则默认M=10，D=0；如果是float和double，则根据插入数值的精度来决定精度</li>
+<li>定点性精确度较高</li>
+</ul>
+<h1 id="P8"><a href="#P8" class="headerlink" title="P8"></a>P8</h1><p>字符型：</p>
+<ul>
+<li>char固定长度字符，varchar可变长度字符</li>
+<li>char（M）M最大的字符数，可省略，默认为1，比较耗费空间，效率高</li>
+<li>varchar（M）M不可以省略，节省空间，效率低</li>
+<li>enum枚举类型</li>
+<li>set集合类型，可同时插入多个值</li>
+</ul>
+<p>日期型：</p>
+<ul>
+<li>date：日期</li>
+<li>time：时间</li>
+<li>year：年</li>
+<li>timestamp：时间戳，日期+时间，4字节，范围小，受时区影响</li>
+<li>datetime：日期+时间，8字节，范围大，不受时区影响</li>
+</ul>
+<p>约束：</p>
+<ul>
+<li>not null：非空，用于保证字段的值不能为空</li>
+<li>default：默认，用于保证字段有默认值</li>
+<li>primary key：主键，用于保证字段的值具有唯一性，并且为空</li>
+<li>unique：唯一，用于保证该字段的值具有唯一性，可以为空</li>
+<li>check：检查约束</li>
+<li>foreign key：外键，用于限制两个表的关系，用于保证该字段的值必须来自与主表的关联列的值</li>
+</ul>
+<p>添加约束的时机：创建表时，修改表时</p>
+<p>约束的添加分类：</p>
+<ul>
+<li>列级约束：六大约束语法上都支持，但是外键约束没有效果，不可以起约束名</li>
+<li>表级约束：除了非空、默认，其他的都支持，在各个字段的最下面，constraint 约束名 约束类型（列名），主键起约束名没有效果</li>
+</ul>
+<p>主键 VS 唯一：</p>
+<ul>
+<li>主键与唯一都保证唯一性</li>
+<li>主键不能为空，唯一可以为空</li>
+<li>主键最多有一个，唯一可以有多个 </li>
+<li>都允许组合，但不推荐</li>
+</ul>
+<p>外键：</p>
+<ul>
+<li>要求在从表设置外键关系</li>
+<li>从表的外键列的类型和主表的关联列的类型要求一致或兼容，名称无要求</li>
+<li>主表的关联列必须是一个key（一般是主键或唯一）</li>
+<li>插入数据时，先插入主表，再删除从表</li>
+<li>删除数据时，先删除从表，再删除主表</li>
+</ul>
+<p>修改表时添加约束：</p>
+<ul>
+<li>添加列级约束：alter  table 表名 modify column 字段名 字段类型 新约束</li>
+<li>添加表级约束：alter table 表名 add 【constraint 约束名】约束类型（字段名）</li>
+</ul>
+<p>修改表时删除约束：</p>
+<ul>
+<li>alter table 表名 modify column 列名 约束 null（删除非空）/int（删除默认）</li>
+<li>alter table 表名 drop 约束 列名</li>
+</ul>
+<p>标识列：自增长列</p>
+<ul>
+<li>创建表时设置标识列：在约束后加auto_increment</li>
+<li>标识列必须与键搭配</li>
+<li>一个表只能有一个标识列</li>
+<li>标识列的类型只能是数值型</li>
+<li>标识列可以通过set auto_increment_increment=a修改步长，可以通过手动插入设置初值</li>
+</ul>
+<p>修改表时设置标识列：在约束后加auto_increment</p>
+<p>修改表时删除标识列：设置时把auto_increment去掉</p>
+<p>TCL：事务控制语言</p>
+<p>事务：一个不可分割的整体，单元中语句错误会回滚</p>
+<ul>
+<li>原子性：事务不可分割</li>
+<li>一致性：数据库从一个一致状态转换到另一个一致状态</li>
+<li>隔离性：各个事务不能互相干扰</li>
+<li>持久性：事务一旦提交，会永久改变数据</li>
+</ul>
+<p>显式事务：具有明显的开启和结束的标记</p>
+<p>前提：必须先设置自动提交功能禁用</p>
+<p>步骤：</p>
+<ul>
+<li>开启事务，set autocommit=0，start transaction（可选）</li>
+<li>编写sql语句（增删改查）</li>
+<li>结束事务： commit；提交事务 rollback；回滚事务</li>
+</ul>
+<p>事务的隔离级别：</p>
+<ul>
+<li>read uncommitted：出现脏读、幻读、不可重复读</li>
+<li>read committed：防止脏读</li>
+<li>repeatable read：防止脏读和不可重复读</li>
+<li>serializable：全部防止</li>
+<li>MySQL中默认repeatable</li>
+</ul>
+<p>savepoint：设置保存点</p>
+<p>rollback：回滚到保留点</p>
+<h1 id="P9"><a href="#P9" class="headerlink" title="P9"></a>P9</h1><p>创建视图：create view 视图名 as 查询语句</p>
+<p>视图的好处：</p>
+<ul>
+<li>重用sql语句</li>
+<li>简化操作，不必知道查询细节</li>
+<li>保护数据，提高安全性</li>
+</ul>
+<p>视图的修改：</p>
+<ul>
+<li>方式一：create or replace view 视图名 as 查询语句</li>
+<li>方式二：alter view 视图名 as 查询语句</li>
+</ul>
+<p>视图的删除：</p>
+<ul>
+<li>drop view 视图名，视图名，……</li>
+</ul>
+<p>查看视图：</p>
+<ul>
+<li>desc 视图名</li>
+<li>show create view 视图名</li>
+</ul>
+<p>视图的更新：（很少用）</p>
+<ul>
+<li>插入：insert into 视图名 values（值）</li>
+<li>修改：update 视图名 set 列名=值</li>
+<li>删除：delete from 视图名</li>
+</ul>
+<p>具备以下特点的sql语句，不允许更新视图：</p>
+<ul>
+<li>包含分组函数、distinct、group by、having、union</li>
+<li>常量视图</li>
+<li>select包含子查询</li>
+<li>join</li>
+<li>from一个不能更新的视图</li>
+<li>where子句的子查询引用了from子句中的表</li>
+</ul>
+<p>视图 VS 表：</p>
+<ul>
+<li>视图只存储了逻辑</li>
+<li>表存储了数据</li>
+</ul>
+<p>delete VS truncate：</p>
+<ul>
+<li>delete能回滚</li>
+<li>truncate不能回滚</li>
+</ul>
+<p>级联删除：添加外键时追加on delete cascade</p>
+<p>级联置空：添加外键时追加on delete set null</p>
+<p>系统变量：</p>
+<ul>
+<li>查看所有的系统变量：show global|【session】 variables</li>
+<li>查看部分：show global|【session】 variables like ‘%char%’</li>
+<li>查看指定：select @@global|【session】系统变量名</li>
+<li>set global|【session】 系统变量名=值</li>
+<li>set @@global|【session】.系统变量名=值</li>
+<li>global全局、session会话，默认session</li>
+</ul>
+<p>用户变量：作用域为当前会话</p>
+<ul>
+<li>声明并初始化：set @用户变量名=值</li>
+<li>声明并初始化：set @用户变量名：=值</li>
+<li>声明并初始化：select @用户变量名：=值</li>
+<li>赋值：set @用户变量名=值</li>
+<li>赋值：set @用户变量名：=值</li>
+<li>赋值：select @用户变量名：=值</li>
+<li>赋值：select 字段 into 变量名 from 表</li>
+<li>使用：select @用户变量名</li>
+</ul>
+<p>局部变量：仅仅定义在begin和end中有效，只能定义在begin end中的第一句话</p>
+<ul>
+<li>声明：declare 变量名 类型</li>
+<li>声明：declare变量名 类型 default 值</li>
+<li>赋值：set 局部变量名=值</li>
+<li>赋值：set 局部变量名：=值</li>
+<li>赋值：select @局部变量名：=值</li>
+<li>赋值：select 字段 into 变量名 from 表</li>
+<li>使用：select 局部变量名</li>
+</ul>
+<p>创建语法：</p>
+<ul>
+<li>create procedure 存储过程名（参数列表）begin ……end</li>
+<li>参数列表包含三部分，参数模式、参数名、参数类型</li>
+<li>参数IN：输入参数；参数OUT：输出参数；参数INOUT：都可以</li>
+<li>如果存储过程体只有一句话，则begin end可以省略</li>
+<li>存储过程体的每条sql语句结尾必须加分号</li>
+<li>delimiter 结束标记</li>
+</ul>
+<h1 id="P10"><a href="#P10" class="headerlink" title="P10"></a>P10</h1><p>调用语法：</p>
+<ul>
+<li>call 存储过程名（实参列表）；</li>
+</ul>
+<p>删除存储过程：</p>
+<ul>
+<li>语法：drop procedure 存储过程名</li>
+</ul>
+<p>查看存储过程的信息：</p>
+<ul>
+<li>语法：show create procedure 存储过程名</li>
+</ul>
+<h1 id="P11"><a href="#P11" class="headerlink" title="P11"></a>P11</h1><p>创建函数：</p>
+<ul>
+<li>create function 函数名（参数列表）returns 返回类型 begin 函数体 end</li>
+<li>参数列表：参数名、参数类型</li>
+</ul>
+<p>调用函数：</p>
+<ul>
+<li>select 函数名（函数列表）</li>
+</ul>
+<p>查看函数：</p>
+<ul>
+<li>show create function 函数名</li>
+</ul>
+<p>删除函数：</p>
+<ul>
+<li>drop function 函数名</li>
+</ul>
+<p>流程控制结构：</p>
+<ul>
+<li>顺序结构：程序从下往下依次执行</li>
+<li>分支结构：程序从两条或多条路径中选择一条执行</li>
+<li>循环结构：程序在满足一定条件的情况下，重复执行一段代码</li>
+</ul>
+<p>分支结构：</p>
+<ul>
+<li>if函数：if （表达式1，表达式2，表达式3） 如果表达式1成立，则返回2，否则返回3</li>
+<li>case等值判断结构：case 变量|表达式|字段 when 要判断的值 then返回的值 end</li>
+<li>case区间判断结构：case 变量|表达式|字段 when 要判断的条件 then返回的值 end</li>
+<li>if多重分支结构：if 条件1 then 语句1；elseif 条件2 then 语句2…… else 语句n；end if；  应用在begin end中</li>
+</ul>
+<p>循环结构：</p>
+<ul>
+<li>iterate相当于continue</li>
+<li>leave相当于break</li>
+<li>【标签】while 循环条件 do 循环体； end while【标签】</li>
+<li>【标签】loop 循环体；end loop 【标签】</li>
+<li>【标签】repeat 循环体；until 结束循环的条件 end repeat【标签】</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/" data-id="ckd18a4b30000jcv23swa1a19" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-计算机网络复习提纲" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%E6%8F%90%E7%BA%B2/" class="article-date">
@@ -1713,6 +2203,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/">MySQL知识点归纳</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%E6%8F%90%E7%BA%B2/">计算机网络复习提纲</a>
           </li>
         
@@ -1726,10 +2220,6 @@
         
           <li>
             <a href="/2020/07/18/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/">博客入门</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/18/hello-world/">Hello World</a>
           </li>
         
       </ul>

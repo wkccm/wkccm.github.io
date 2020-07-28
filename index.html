@@ -64,6 +64,348 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java基础编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/29/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-07-28T17:05:48.313Z" itemprop="datePublished">2020-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/29/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/">Java基础编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章-Java语言概述"><a href="#第一章-Java语言概述" class="headerlink" title="第一章 Java语言概述"></a>第一章 Java语言概述</h1><p>Java语言的主要特性：强制面向对象、分布式、健壮、解释型、体系结构中立、原生支持多线程</p>
+<p>Java的核心机制：Java虚拟机、垃圾回收机制</p>
+<p>文档注释：</p>
+<ul>
+<li>格式：/**     */</li>
+</ul>
+<h1 id="第二章-基本语法"><a href="#第二章-基本语法" class="headerlink" title="第二章 基本语法"></a>第二章 基本语法</h1><h2 id="2-1-关键字与保留字"><a href="#2-1-关键字与保留字" class="headerlink" title="2.1 关键字与保留字"></a>2.1 关键字与保留字</h2><p>关键字：被Java语言赋予了特殊含义，用做专门用途的字符串，所有字母都小写</p>
+<p>保留字：Java尚未使用，但是以后版本可能会使用</p>
+<h2 id="2-2-标识符"><a href="#2-2-标识符" class="headerlink" title="2.2 标识符"></a>2.2 标识符</h2><p>标识符的定义规则：</p>
+<ul>
+<li>由26个英文字母大小写，0-9，_或$组成</li>
+<li>数字不能开头</li>
+<li>不可以使用关键字和保留字，但可以包含</li>
+<li>Java严格区分大小写，长度无限制</li>
+<li>标识符中不能包含空格</li>
+</ul>
+<p>Java中的名称命名规范：</p>
+<ul>
+<li>包名：多单词组成时所有字母都小写</li>
+<li>类名、接口名：多单词组成时，所有单词首字母大写</li>
+<li>变量名、方法名：多单词组成时，第一个单词首字母小写，第二个单词开始每个单词首字母大写</li>
+<li>常量名：所有字母大写</li>
+</ul>
+<h2 id="2-3-变量"><a href="#2-3-变量" class="headerlink" title="2.3 变量"></a>2.3 变量</h2><p>Java的整数类型占用的存储空间：byte 1 short 2 int 4 long 8</p>
+<p>Java浮点数类型：float 4 double 8</p>
+<p>char字符：\u 用Unicode值来表示字符型常量</p>
+<p>布尔类型：只允许取值true和false，无null，不可以使用数字来代替</p>
+<p>自动类型转换：</p>
+<ul>
+<li>char、byte、short转int转long转float转double</li>
+<li>多种数据混合运算时，自动将所有数据转换成容量最大的数据类型</li>
+<li>byte、char、short不会相互转换，互相计算时转成int</li>
+<li>boolean类型不能与其他数据类型运算</li>
+<li>任何基本数据类型的值与String进行连接运算时，将自动转为String类型</li>
+</ul>
+<p>强制类型转换：</p>
+<ul>
+<li>自动类型转换使用时加上强制转换符（）</li>
+<li>boolean类型不可以转换</li>
+<li>字符串不能直接转换为基本数据类型，但可以调用基本类型对应的包装类</li>
+</ul>
+<h2 id="2-4-运算符"><a href="#2-4-运算符" class="headerlink" title="2.4 运算符"></a>2.4 运算符</h2><p>算术运算符注意事项：</p>
+<ul>
+<li>对负数取模，可以把模数负号忽略不计，但是被模数是负数则不可忽略，取模运算的结果不一定是整数</li>
+<li>对于除号，整数除会舍弃小数部分</li>
+<li>注意输出时涉及到String的自动类型转换</li>
+</ul>
+<p>逻辑运算符：</p>
+<ul>
+<li>注意逻辑与&amp;、逻辑或|与短路与&amp;&amp;、短路或||的区别</li>
+</ul>
+<p>位运算符：</p>
+<ul>
+<li>“&gt;&gt;&gt;”被移位的二级制最高位无论是1还是0，空缺位都用0补</li>
+</ul>
+<p>三元运算符：</p>
+<ul>
+<li>表达式1与2必须为同种类型</li>
+</ul>
+<p>运算符的优先级：</p>
+<ul>
+<li>只有单目运算符、三元运算符和赋值运算符是从右向左运算的</li>
+</ul>
+<h2 id="2-5-程序流程控制"><a href="#2-5-程序流程控制" class="headerlink" title="2.5 程序流程控制"></a>2.5 程序流程控制</h2><p>顺序结构、分支结构、循环结构</p>
+<p>分支结构：</p>
+<ul>
+<li>if-else语句</li>
+<li>switch-case语句：</li>
+<li><ul>
+<li>switch表达式的值必须是：byte、short、char、int、枚举、String</li>
+<li>case中必须是常量</li>
+<li>各case中必须不同</li>
+<li>break跳出switch语句块</li>
+<li>dafault任选，当没有匹配的case时，执行default</li>
+</ul>
+</li>
+</ul>
+<p>循环结构：for、while、do-while</p>
+<ul>
+<li>标号语句必须紧接在循环的头部</li>
+</ul>
+<h1 id="第三章-数组"><a href="#第三章-数组" class="headerlink" title="第三章 数组"></a>第三章 数组</h1><h2 id="3-1-数组的概述"><a href="#3-1-数组的概述" class="headerlink" title="3.1 数组的概述"></a>3.1 数组的概述</h2><ul>
+<li>数组是引用数据类型，数组中的元素可以是任何数据类型</li>
+<li>创建数组对象会在内存中开辟连续空间，数组名中引用的是首地址</li>
+<li>数组长度一旦确定，就不能更改</li>
+<li>可以通过下标直接调用</li>
+</ul>
+<h2 id="3-2-一维数组的使用"><a href="#3-2-一维数组的使用" class="headerlink" title="3.2 一维数组的使用"></a>3.2 一维数组的使用</h2><p>声明方式：type var[]或type[] var</p>
+<p>栈中是局部变量，堆中是new出来的结构，如对象、数组</p>
+<h2 id="3-3-多维数组的使用"><a href="#3-3-多维数组的使用" class="headerlink" title="3.3 多维数组的使用"></a>3.3 多维数组的使用</h2><p>多维数组的初始化：</p>
+<ul>
+<li>int 【】【】arr=new int【3】【2】</li>
+<li>int 【】【】arr=new int【3】【】</li>
+<li>int 【】【】arr=new int【】【】{  {1,2}，{3,4}，{5,6}  }</li>
+</ul>
+<h1 id="第四章-面向对象编程（上）"><a href="#第四章-面向对象编程（上）" class="headerlink" title="第四章 面向对象编程（上）"></a>第四章 面向对象编程（上）</h1><h2 id="4-1-面向过程与面向对象"><a href="#4-1-面向过程与面向对象" class="headerlink" title="4.1 面向过程与面向对象"></a>4.1 面向过程与面向对象</h2><p>面向对象的三大特征：封装、继承、多态</p>
+<h2 id="4-2-类和对象"><a href="#4-2-类和对象" class="headerlink" title="4.2 类和对象"></a>4.2 类和对象</h2><p>类的语法声明：修饰符 class 类名{属性声明；方法声明}</p>
+<h2 id="4-3-对象的创建与使用"><a href="#4-3-对象的创建与使用" class="headerlink" title="4.3 对象的创建与使用"></a>4.3 对象的创建与使用</h2><p>创建对象的语法： 类名 对象名=new 类名（）；</p>
+<p>使用 对象名.对象成员 的方式访问对象成员</p>
+<p>内存解析：</p>
+<ul>
+<li>堆：存放对象实例，数组</li>
+<li>栈：存储局部变量、对象引用，方法执行完自动释放</li>
+<li>方法区：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码</li>
+</ul>
+<p>匿名对象：不定义对象的句柄，而直接调用对象的方法，语法： new X（）.xxx（）；</p>
+<p>匿名对象使用的情况：</p>
+<ul>
+<li>如果一个对象只需要进行一次方法调用，就可以使用匿名对象</li>
+<li>我们经常将匿名对象作为实参传递给一个方法调用</li>
+</ul>
+<h2 id="4-4-属性"><a href="#4-4-属性" class="headerlink" title="4.4 属性"></a>4.4 属性</h2><p>语法格式： 修饰符 数据类型 属性名 = 初始化值；</p>
+<h2 id="4-5-方法"><a href="#4-5-方法" class="headerlink" title="4.5 方法"></a>4.5 方法</h2><p>语法格式： 修饰符 返回值类型 方法名（参数类型 形参，……）{方法体  return 返回值；}</p>
+<p>方法的注意事项：</p>
+<ul>
+<li>方法被调用一次，就会执行一次</li>
+<li>没有具体返回值的情况，返回值类型用关键字void表示，那么方法体中可以不使用return</li>
+<li>定义方法时，方法的结果应该返回给调用者，交由调用者处理</li>
+<li>方法中只能调用方法或属性，不可以在内部定义方法</li>
+</ul>
+<h2 id="4-6-再谈方法"><a href="#4-6-再谈方法" class="headerlink" title="4.6 再谈方法"></a>4.6 再谈方法</h2><p>重载：同一个类中，允许存在一个以上的同名方法，只要参数个数或者参数类型不同即可</p>
+<p>可变个数的形参：</p>
+<ul>
+<li>格式：方法名（参数的类型名…参数名）</li>
+<li>可变参数的个数：0，1，多个</li>
+<li>可变个数的形参的方法与同名方法构成重载</li>
+<li>可变参数方法的使用与方法参数部分使用数组是一致的</li>
+<li>方法的参数部分有可变形参，需要放在形参声明的最后</li>
+<li>最多声明一个可变个数形参</li>
+</ul>
+<p>值传递与引用传递</p>
+<h2 id="4-7封装与隐藏"><a href="#4-7封装与隐藏" class="headerlink" title="4.7封装与隐藏"></a>4.7封装与隐藏</h2><table>
+<thead>
+<tr>
+<th align="center">修饰符</th>
+<th align="center">类内部</th>
+<th align="center">同一个包</th>
+<th align="center">不同包的子类</th>
+<th align="center">同一个工程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">private</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">default</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">public</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+</tbody></table>
+<p>class的权限修饰符只可以用public和default</p>
+<h2 id="4-8-构造器"><a href="#4-8-构造器" class="headerlink" title="4.8 构造器"></a>4.8 构造器</h2><ul>
+<li>与类有相同的名称</li>
+<li>不声明返回值类型</li>
+<li>不能被static、final、synchronized、abstract、native修饰，没有return语句返回值</li>
+<li>构造器的作用：创建对象，给对象进行初始化</li>
+<li>语法：修饰符 类名（参数列表）{初始化语句；}</li>
+<li>每个类至少有一个构造器</li>
+<li>默认构造器的修饰符与所属类的修饰符一致</li>
+<li>一旦显式定义构造器，系统就不再提供默认构造器</li>
+<li>一个类可以创建多个重载的构造器</li>
+<li>父类的构造器不可被子类继承</li>
+</ul>
+<p>赋值的先后顺序：</p>
+<ul>
+<li>默认初始化</li>
+<li>显式初始化</li>
+<li>构造器中初始化</li>
+<li>通过“对象.属性”或“对象.方法”的方式赋值</li>
+</ul>
+<h2 id="4-9-this的使用"><a href="#4-9-this的使用" class="headerlink" title="4.9 this的使用"></a>4.9 this的使用</h2><p>注意事项：</p>
+<ul>
+<li>使用当前类的成员变量或成员方法可以加this</li>
+<li>形参与成员变量同名时，调用需要添加this</li>
+<li>使用this访问属性和方法时，若在本类中未找到，会从父类中查找</li>
+<li>this可以作为一个类中构造器相互调用的特殊格式</li>
+<li>可以在类的构造器中使用“this（形参列表）”的方式，调用本类中重载的其他构造器</li>
+<li>不能通过this调用自身构造器</li>
+<li>如果一个类中声明了n个构造器，则最多有n-1个构造器使用了this（形参列表）</li>
+<li>this（形参列表）必须在构造器首行</li>
+<li>在类的一个构造器中，最多只能声明一个this（形参列表）</li>
+</ul>
+<h2 id="4-10-package和import的使用"><a href="#4-10-package和import的使用" class="headerlink" title="4.10 package和import的使用"></a>4.10 package和import的使用</h2><p>package指明文件中定义的类所在的包，语法：package 顶层包名.子包名；</p>
+<p>import为使用定义在不同包中的Java类，需用import语句来引入指定包下所需要的类，语法：import 包名.类名；</p>
+<p>如果在代码中使用不同包下的同名的类，就需要使用类的全类名的方式指明调用的是哪个类</p>
+<p>如果已经导入某包下的类，且需要使用该包的子包下的类的话，仍然需要导入</p>
+<p>import static组合的使用：调用指定类或接口下的静态的属性或方法</p>
+<h1 id="第五章-面向对象编程（中）"><a href="#第五章-面向对象编程（中）" class="headerlink" title="第五章 面向对象编程（中）"></a>第五章 面向对象编程（中）</h1><h2 id="5-1-继承性"><a href="#5-1-继承性" class="headerlink" title="5.1 继承性"></a>5.1 继承性</h2><p>语法：class A extends B  A是B的子类</p>
+<p>Java支持单继承和多层继承，不允许多重继承</p>
+<h2 id="5-2-方法的重写"><a href="#5-2-方法的重写" class="headerlink" title="5.2 方法的重写"></a>5.2 方法的重写</h2><p>方法的重写：对父类中的方法进行改造，子类的方法将覆盖父类的方法</p>
+<ul>
+<li>子类重写的方法必须和父类被重写的方法具有相同的方法名称、参数列表</li>
+<li>返回值类型不能大于父类被重写的方法的返回值类型</li>
+<li>方法的访问权限不能小于父类被重写的方法的访问权限</li>
+<li>子类不能重写父类中声明为private权限的方法</li>
+<li>子类方法抛出的异常不能大于父类被重写方法的异常</li>
+<li>子类与父类中同名同参数的方法必须同时声明为非static的，或者同时声明为static的（不是重写）。因为static方法属于类，子类无法覆盖父类的方法</li>
+</ul>
+<h2 id="5-3-访问控制"><a href="#5-3-访问控制" class="headerlink" title="5.3 访问控制"></a>5.3 访问控制</h2><h2 id="5-4-super"><a href="#5-4-super" class="headerlink" title="5.4 super"></a>5.4 super</h2><p>在Java类中使用super来调用父类中的指定操作</p>
+<ul>
+<li>子类中所有的构造器默认都会访问父类中空参数的构造器</li>
+<li>当父类中没有空参数的构造器时，子类的构造器必须通过this或super语句指定调用本类或父类中相应的构造器，同时只能二选一，且必须放在构造器的首行</li>
+<li>如果子类构造器中既未显式调用父类或本类的构造器，且父类中又没有无参的构造器，则编译出错</li>
+</ul>
+<p>super与this对比：</p>
+<ul>
+<li>this先访问本类，再访问父类，super直接访问父类，两者都必须放在首行</li>
+</ul>
+<h2 id="5-5-子类对象实例化过程"><a href="#5-5-子类对象实例化过程" class="headerlink" title="5.5 子类对象实例化过程"></a>5.5 子类对象实例化过程</h2><h2 id="5-6-多态性"><a href="#5-6-多态性" class="headerlink" title="5.6 多态性"></a>5.6 多态性</h2><p>对象的多态性：父类的引用指向子类的对象</p>
+<p>Java的引用变量有两个类型：运行时类型和编译时类型</p>
+<p>编译时，看左边；运行时，看右边</p>
+<p>编译时用父类引用调用子类特有的属性和方法会产生错误</p>
+<p>方法声明的形参为父类类型，可以使用子类的对象作为实参调用方法</p>
+<p>虚拟方法调用：子类与父类有同名同参数的方法，父类方法为虚方法，编译期无法确定，以运行时为准</p>
+<p>重载VS重写：</p>
+<ul>
+<li>重载，是指允许存在多个同名方法，早绑定/静态绑定</li>
+<li>重写，同名同参数，晚绑定，静态绑定</li>
+</ul>
+<p>成员方法具有多态性，成员变量不具备多态性</p>
+<p>x instanceof A：检验x是否是A的对象，返回boolean值</p>
+<h2 id="5-7-Object类的使用"><a href="#5-7-Object类的使用" class="headerlink" title="5.7 Object类的使用"></a>5.7 Object类的使用</h2><p>==和equals的区别：</p>
+<ul>
+<li>==既可以比较基本类型，也可以比较引用类型，对于基本类型就是比较值，对于引用类型就是比较内存地址</li>
+<li>equals在未重写的情况下默认是==，但一般会重写，重写后一般会比较类中相应属性是否都相等</li>
+</ul>
+<h2 id="5-8-包装类的使用"><a href="#5-8-包装类的使用" class="headerlink" title="5.8 包装类的使用"></a>5.8 包装类的使用</h2><p>装箱：包装类使得一个基本数据类型变成了类</p>
+<p>拆箱：将数字包装类中内容变为基本数据类型</p>
+<h1 id="第六章-面向对象编程（下）"><a href="#第六章-面向对象编程（下）" class="headerlink" title="第六章 面向对象编程（下）"></a>第六章 面向对象编程（下）</h1><h2 id="6-1-static"><a href="#6-1-static" class="headerlink" title="6.1 static"></a>6.1 static</h2><p>static可修饰属性、方法、代码块、内部类</p>
+<ul>
+<li>随着类的加载而加载</li>
+<li>优先于对象存在</li>
+<li>修饰的成员，被所有对象共享</li>
+<li>访问权限允许时，可不创建对象，直接被类调用</li>
+</ul>
+<p>在static方法内部，只能访问static修饰的属性和方法</p>
+<p>static内部不能有this或super</p>
+<p>static方法不能被重写</p>
+<h2 id="6-2-理解main方法的语法"><a href="#6-2-理解main方法的语法" class="headerlink" title="6.2 理解main方法的语法"></a>6.2 理解main方法的语法</h2><h2 id="6-3-代码块"><a href="#6-3-代码块" class="headerlink" title="6.3 代码块"></a>6.3 代码块</h2><p>对Java类或对象进行初始化</p>
+<p>执行顺序与显示初始化平级</p>
+<p>可以用static修饰，静态代码块先于普通代码块执行</p>
+<h2 id="6-4-final"><a href="#6-4-final" class="headerlink" title="6.4 final"></a>6.4 final</h2><p>final可用来修饰类、变量、方法</p>
+<p>final标记的类不能被继承，不能被子类重写</p>
+<p>final标记的变量即为常量，只能被赋值一次</p>
+<h2 id="6-5-抽象类与抽象方法"><a href="#6-5-抽象类与抽象方法" class="headerlink" title="6.5 抽象类与抽象方法"></a>6.5 抽象类与抽象方法</h2><p>用abstract修饰的类为抽象类，修饰的方法为抽象方法</p>
+<ul>
+<li>抽象类不能被实例化</li>
+<li>抽象方法只有声明，没有实现</li>
+<li>含有抽象方法的类必须被声明为抽象类</li>
+<li>不能用abstract修饰变量、代码块、构造器</li>
+<li>不能用abstract修饰私有方法、静态方法、final的方法、final的类</li>
+<li>抽象类的子类必须重写父类的抽象方法，并提供方法体</li>
+</ul>
+<h2 id="6-6-接口"><a href="#6-6-接口" class="headerlink" title="6.6 接口"></a>6.6 接口</h2><p>接口是抽象方法和常量值定义的集合</p>
+<p>接口interface，继承接口时implements</p>
+<ul>
+<li>先写extends，后写implements</li>
+<li>一个类可实现多个接口，接口也可以继承其他接口</li>
+<li>接口冲突时，要指明接口名</li>
+</ul>
+<h2 id="6-7-内部类"><a href="#6-7-内部类" class="headerlink" title="6.7 内部类"></a>6.7 内部类</h2><ul>
+<li>外部类访问成员内部类的成员，需要用“内部类.成员”或“内部类对象.成员”</li>
+<li>内部类可以直接使用外部类的所有成员，包括私有的数据</li>
+<li>当想要在外部类的静态成员部分使用内部类时，可以考虑内部类声明为静态的</li>
+<li>局部内部类可以写在方法内、代码块内、构造函数内</li>
+<li>可以使用外部方法的局部变量，但是必须是final的，由声明周期不同所致</li>
+<li>局部内部类可以使用外部类的成员，包括私有的</li>
+<li>局部内部类不能用static修饰</li>
+</ul>
+<p>匿名内部类不能定义任何静态成员、方法和类，只能创建一个实例</p>
+<ul>
+<li>匿名内部类必须继承父类或实现接口</li>
+</ul>
+<h1 id="第七章-异常处理"><a href="#第七章-异常处理" class="headerlink" title="第七章 异常处理"></a>第七章 异常处理</h1><h2 id="7-1-异常概述与异常体系结构"><a href="#7-1-异常概述与异常体系结构" class="headerlink" title="7.1 异常概述与异常体系结构"></a>7.1 异常概述与异常体系结构</h2><p>异常事件可分为两类，error和exception，error是Java虚拟机无法解决的严重问题，exception是因编程错误或偶然的外部因素导致的一般性问题，可以使用针对性的代码进行处理</p>
+<p>异常分为运行时异常和编译时异常</p>
+<h2 id="7-2-常见异常"><a href="#7-2-常见异常" class="headerlink" title="7.2 常见异常"></a>7.2 常见异常</h2><h2 id="7-3-try-catch-finally"><a href="#7-3-try-catch-finally" class="headerlink" title="7.3 try-catch-finally"></a>7.3 try-catch-finally</h2><p>try中选定捕获异常的范围，catch中是对异常对象进行处理的代码，每个try语句块可以伴随一个/或多个catch语句</p>
+<p>finally：无论代码块中是否发生了异常，catch语句是否执行，catch中是否有return，finally都会执行</p>
+<h2 id="7-4-throws"><a href="#7-4-throws" class="headerlink" title="7.4 throws"></a>7.4 throws</h2><p>如果一个方法可能生成某种异常，但是并不能确定如何处理，则方法声明中用throws语句可以声明抛出异常的列表，throws后面的异常类型可以是方法中产生的异常类型，也可以是它的父类</p>
+<p>重写方法不能抛出比被重写方法范围更大的异常类型</p>
+<h2 id="7-5-手动抛出异常"><a href="#7-5-手动抛出异常" class="headerlink" title="7.5 手动抛出异常"></a>7.5 手动抛出异常</h2><p>生成异常类对象，然后通过throw语句实现抛出</p>
+<h2 id="7-6-用户自定义异常类"><a href="#7-6-用户自定义异常类" class="headerlink" title="7.6 用户自定义异常类"></a>7.6 用户自定义异常类</h2><ul>
+<li>用户自定义异常类一般都是RuntimeException的子类</li>
+<li>通常需要编写几个重载的构造器</li>
+<li>需要提供serialVersionID</li>
+<li>自定义的异常通过throw抛出</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/29/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/" data-id="ckd66uugr0000fwv28xwj9tsb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MySQL知识点归纳" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/" class="article-date">
@@ -2203,6 +2545,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/29/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/">Java基础编程</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/">MySQL知识点归纳</a>
           </li>
         
@@ -2216,10 +2562,6 @@
         
           <li>
             <a href="/2020/07/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E6%8F%90%E7%BA%B2/">操作系统复习提纲</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/18/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/">博客入门</a>
           </li>
         
       </ul>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java高级编程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一章 多线程1.1 基本概念程序：一段静态的代码 进程：正在运行的一个程序，资源分配的单位 线程：一个程序内部的一条执行路径，是调度和执行的基本单位 多线程的优点：  提高响应，增强用户体验 提高CPU利用率 改善程序结构  1.2 线程的创建和使用创建线程：  方法一：继承thread类，重写run方法，创建thread子类对象，调用start方法 方法二：实现runnable接口，子类中重写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java高级编程">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/Java%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章 多线程1.1 基本概念程序：一段静态的代码 进程：正在运行的一个程序，资源分配的单位 线程：一个程序内部的一条执行路径，是调度和执行的基本单位 多线程的优点：  提高响应，增强用户体验 提高CPU利用率 改善程序结构  1.2 线程的创建和使用创建线程：  方法一：继承thread类，重写run方法，创建thread子类对象，调用start方法 方法二：实现runnable接口，子类中重写">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-30T12:05:18.661Z">
+<meta property="article:modified_time" content="2020-07-30T12:04:43.988Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java高级编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/30/Java%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-07-30T12:05:18.661Z" itemprop="datePublished">2020-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java高级编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章-多线程"><a href="#第一章-多线程" class="headerlink" title="第一章 多线程"></a>第一章 多线程</h1><h2 id="1-1-基本概念"><a href="#1-1-基本概念" class="headerlink" title="1.1 基本概念"></a>1.1 基本概念</h2><p>程序：一段静态的代码</p>
+<p>进程：正在运行的一个程序，资源分配的单位</p>
+<p>线程：一个程序内部的一条执行路径，是调度和执行的基本单位</p>
+<p>多线程的优点：</p>
+<ul>
+<li>提高响应，增强用户体验</li>
+<li>提高CPU利用率</li>
+<li>改善程序结构</li>
+</ul>
+<h2 id="1-2-线程的创建和使用"><a href="#1-2-线程的创建和使用" class="headerlink" title="1.2 线程的创建和使用"></a>1.2 线程的创建和使用</h2><p>创建线程：</p>
+<ul>
+<li>方法一：继承thread类，重写run方法，创建thread子类对象，调用start方法</li>
+<li>方法二：实现runnable接口，子类中重写runnable接口中的run方法，创建线程对象，将runnable接口的子类对象作为实际参数传递给thread类的构造器中，调用thread类的start方法</li>
+</ul>
+<p>方法二的好处：避免了单继承的局限性，多个县城可以共享同一个接口实现类的对象，适合多个相同线程来处理同一份资源</p>
+<h2 id="1-3-线程的声明周期"><a href="#1-3-线程的声明周期" class="headerlink" title="1.3 线程的声明周期"></a>1.3 线程的声明周期</h2><p>线程的状态：</p>
+<ul>
+<li>新建：thread或其子类的对象被声明并创建时</li>
+<li>就绪：处于新建状态的线程被start后，进入线程队列等待CPU时间片，此时它已具备运行条件，知识没分配到CPU资源</li>
+<li>运行：就绪的线程获得CPU资源</li>
+<li>阻塞：被人为挂起或执行输入输出操作时</li>
+<li>死亡：完成工作或提前强制终止或出现异常</li>
+</ul>
+<h2 id="1-4-线程的同步"><a href="#1-4-线程的同步" class="headerlink" title="1.4 线程的同步"></a>1.4 线程的同步</h2><p>同步机制：</p>
+<ul>
+<li>同步代码块：synchronized（对象）{代码}；</li>
+<li>同步方法：synchronized方法放在方法声明中，表示整个方法为同步方法</li>
+</ul>
+<p>锁：</p>
+<ul>
+<li>必须保证同一个资源的多个线程共用一把锁</li>
+<li>一个线程类中的所有静态方法共有一把锁，所有非静态方法共用一把锁</li>
+</ul>
+<p>释放锁的操作：</p>
+<ul>
+<li>当前线程的同步方法、同步代码块执行结束</li>
+<li>当前线程在同步代码块、同步方法中遇到break、return终止了执行</li>
+<li>当前线程在同步代码块、同步方法中出现了未处理的Error或Exception</li>
+<li>当前线程在同步代码块、同步方法中执行了wait方法</li>
+</ul>
+<p>不会释放锁的操作：</p>
+<ul>
+<li>线程执行同步代码块或同步方法时，程序调用sleep、yield方法暂停执行</li>
+<li>线程执行同步代码块时，其他线程调用了该线程的suspend方法将该线程挂起，该线程不会释放锁</li>
+</ul>
+<p>synchronized与lock的对比：</p>
+<ul>
+<li>lock是显式锁，手动开启和关闭，synchronized是隐式锁，出了作用域自动释放</li>
+<li>lock只有代码块锁，synchronized有代码块锁和方法锁</li>
+<li>使用lock锁，JVM将花费较少的时间来调度线程，性能更好，有更好的扩展性</li>
+</ul>
+<h2 id="1-5-线程的通信"><a href="#1-5-线程的通信" class="headerlink" title="1.5 线程的通信"></a>1.5 线程的通信</h2><p>wait：令当前线程挂起并放弃CPU、同步资源并等待</p>
+<p>notify：唤醒正在排队等待同步资源的线程中优先级最高者结束等待</p>
+<p>notifyAll：唤醒所有等待的线程</p>
+<h2 id="1-6-JDK5-0新增线程创建方式"><a href="#1-6-JDK5-0新增线程创建方式" class="headerlink" title="1.6 JDK5.0新增线程创建方式"></a>1.6 JDK5.0新增线程创建方式</h2><ul>
+<li>实现Callable接口</li>
+<li>使用线程池</li>
+</ul>
+<h1 id="第二章-常用类"><a href="#第二章-常用类" class="headerlink" title="第二章 常用类"></a>第二章 常用类</h1><h2 id="2-1-String"><a href="#2-1-String" class="headerlink" title="2.1 String"></a>2.1 String</h2><ul>
+<li>是一个final类，代表不可变的字符序列</li>
+<li>是常量，用双引号引起来表示，值在创建后不能更改</li>
+<li>String对象的字符内容是存储在一个字符数组value【】中的</li>
+</ul>
+<p>StringBuffer类代表可变的字符序列：</p>
+<ul>
+<li>可以对字符进行增删，不会产生新的对象</li>
+<li>作为参数传递时，方法内部可以改变值</li>
+<li>线程安全</li>
+</ul>
+<p>StringBuilder：</p>
+<ul>
+<li>可变的字符序列，效率高，线程不安全</li>
+</ul>
+<h2 id="2-2-日期时间API"><a href="#2-2-日期时间API" class="headerlink" title="2.2 日期时间API"></a>2.2 日期时间API</h2><h2 id="2-3-新日期时间API"><a href="#2-3-新日期时间API" class="headerlink" title="2.3 新日期时间API"></a>2.3 新日期时间API</h2><h2 id="2-4-Java比较器"><a href="#2-4-Java比较器" class="headerlink" title="2.4 Java比较器"></a>2.4 Java比较器</h2><p>自然排序：comparable</p>
+<p>定制排序：comparator</p>
+<h2 id="2-5-System类"><a href="#2-5-System类" class="headerlink" title="2.5 System类"></a>2.5 System类</h2><h2 id="2-6-Math类"><a href="#2-6-Math类" class="headerlink" title="2.6 Math类"></a>2.6 Math类</h2><h2 id="2-7-BigInteger类"><a href="#2-7-BigInteger类" class="headerlink" title="2.7 BigInteger类"></a>2.7 BigInteger类</h2><p>还有BigDecimal类</p>
+<h1 id="第三章-枚举类与注解"><a href="#第三章-枚举类与注解" class="headerlink" title="第三章 枚举类与注解"></a>第三章 枚举类与注解</h1><h2 id="3-1-枚举类"><a href="#3-1-枚举类" class="headerlink" title="3.1 枚举类"></a>3.1 枚举类</h2><ul>
+<li>枚举类只能使用private修饰符</li>
+<li>列出的实例会自动添加public static final修饰符</li>
+</ul>
+<h2 id="3-2-注解"><a href="#3-2-注解" class="headerlink" title="3.2 注解"></a>3.2 注解</h2><ul>
+<li>生成文档相关的注释</li>
+<li>在编译时进行格式检查</li>
+<li>跟踪代码依赖性，实现替代配置文件功能</li>
+</ul>
+<h1 id="第四章-Java集合"><a href="#第四章-Java集合" class="headerlink" title="第四章 Java集合"></a>第四章 Java集合</h1><h2 id="4-1-Java集合概述"><a href="#4-1-Java集合概述" class="headerlink" title="4.1 Java集合概述"></a>4.1 Java集合概述</h2><p>Collection和Map两种体系</p>
+<p>Collection：单列数据，定义了存取一组对象的集合</p>
+<ul>
+<li>List：元素有序、可重复的集合</li>
+<li>Set：元素无序、不可重复的集合</li>
+</ul>
+<p>Map：双列数据，保存具有映射关系的集合</p>
+<h2 id="4-2-Collection接口方法"><a href="#4-2-Collection接口方法" class="headerlink" title="4.2 Collection接口方法"></a>4.2 Collection接口方法</h2><h2 id="4-3-Iterator迭代器接口"><a href="#4-3-Iterator迭代器接口" class="headerlink" title="4.3 Iterator迭代器接口"></a>4.3 Iterator迭代器接口</h2><p>Iterator对象称为迭代器，主要用于遍历Collection集合中的元素</p>
+<h2 id="4-4-Collection子接口：List接口"><a href="#4-4-Collection子接口：List接口" class="headerlink" title="4.4 Collection子接口：List接口"></a>4.4 Collection子接口：List接口</h2><p>List集合类：元素有序、且可重复、有顺序索引</p>
+<ul>
+<li>ArrayList：变长数组、线程不安全</li>
+<li>LinkedList：双向链表、线程不安全</li>
+<li>Vector：变长数组、线程安全、较慢</li>
+</ul>
+<h2 id="4-5-Collection子接口：Set接口"><a href="#4-5-Collection子接口：Set接口" class="headerlink" title="4.5 Collection子接口：Set接口"></a>4.5 Collection子接口：Set接口</h2><p>不允许包含相同的元素，判断对象是否相等用equals方法</p>
+<p>HashSet：</p>
+<ul>
+<li>HashSet不保证元素排列顺序、线程不安全、集合元素可以是null，用HashCode方法比较相等。存放在Set容器中的对象，对应的类一定要重写equals和HashCode方法，以实现对象相等规则：相等的对象必须具有相等的散列码。</li>
+<li>向HashSet中添加元素时，先计算HashCode的值，然后看equals是否相等</li>
+<li>扩容：0.75</li>
+</ul>
+<p>LinkedHashSet：</p>
+<ul>
+<li>用HashCode来决定元素的存储位置，但是使用双向链表维护元素的次序，插入性能略低于HashSet，但是迭代访问所有元素时具有很好的性能</li>
+<li>LinkedHashSet不允许集合元素重复</li>
+</ul>
+<p>TreeSet：</p>
+<ul>
+<li>红黑树结构</li>
+<li>确保元素处于排序状态，有自然排序和定制排序</li>
+</ul>
+<h2 id="4-6-Map"><a href="#4-6-Map" class="headerlink" title="4.6 Map"></a>4.6 Map</h2><ul>
+<li>Map中的key用set来存放，不允许重复</li>
+<li>key与value存在单向一对一关系</li>
+<li>HashMap是接口使用频率最高的实现类</li>
+</ul>
+<p>HashMap：</p>
+<ul>
+<li>允许使用null键和null值</li>
+<li>判断key相等的标准：通过equals方法返回true，HashCode值也相等</li>
+<li>判断value相等的标准：通过equals方法返回true</li>
+<li>JDK7及以前的存储结构：数组+链表结构</li>
+<li>JDK8以后：数组+链表+红黑树</li>
+<li>HashMap源码中的重要常量：</li>
+<li><ul>
+<li>HashMap的默认容量：16</li>
+<li>HashMap最大支持容量：2^30</li>
+<li>HashMap的默认加载因子：0.75</li>
+<li>Bucket中链表长度大于该默认值，转化为红黑树：8</li>
+<li>Bucket中红黑树存储的Node小于该默认值，转化为链表：6</li>
+<li>桶中的Node被树化时的最小的hash表容量：64</li>
+</ul>
+</li>
+<li>JDK1.8之前添加元素：底层创建长度为16的entry数组，新添加的元素作为链表的head。首先计算哈希值，哈希值经过处理得到存放位置，若数据为空，则直接添加；若数据不为空，则比较哈希值，若不同，则直接添加，若相同，则调用equals，若false则添加，若true则替换</li>
+<li>JDK1.8之前的扩容：超过数组大小*加载因子时，进行数组扩容，然后重新计算每个元素的位置</li>
+<li>JDK1.8之后添加元素：第一次put时初始创建一个16的Node数组，新添加的在链表尾部</li>
+<li>JDK1.8之后的扩容：超过时，进行数组扩容，若一个链的对象个数达到8个，此时若capacity没有达到64，会扩容，若已达到64，则链会变成树，节点类型由Node变为TreeNode；映射关系被移除后，下次resize时判断树的结点个数低于6个，会把树再转为链表，注意转树是索引局部的操作</li>
+</ul>
+<p>LinkedHashMap是HashMap的子类：</p>
+<ul>
+<li>使用了一对双向链表来记录添加元素的顺序</li>
+</ul>
+<p>TreeMap：</p>
+<ul>
+<li>可排序，用红黑树存储数据</li>
+</ul>
+<p>Hashtable：</p>
+<ul>
+<li>线程安全</li>
+<li>不能使用null作为key或value</li>
+<li>无序</li>
+</ul>
+<p>Properties：</p>
+<ul>
+<li>Hashtable的子类，用于处理属性文件</li>
+<li>key和value都是字符串类型</li>
+</ul>
+<h2 id="4-7-Collections工具类"><a href="#4-7-Collections工具类" class="headerlink" title="4.7 Collections工具类"></a>4.7 Collections工具类</h2><h1 id="第五章-泛型"><a href="#第五章-泛型" class="headerlink" title="第五章 泛型"></a>第五章 泛型</h1><h2 id="5-1-泛型的概念"><a href="#5-1-泛型的概念" class="headerlink" title="5.1 泛型的概念"></a>5.1 泛型的概念</h2><p>泛型：允许在定义类、接口时通过一个标识表示类中某个属性的类型或是某个方法的返回值即参数类型</p>
+<h2 id="5-2-集合中的泛型"><a href="#5-2-集合中的泛型" class="headerlink" title="5.2 集合中的泛型"></a>5.2 集合中的泛型</h2><h2 id="5-3-自定义泛型"><a href="#5-3-自定义泛型" class="headerlink" title="5.3 自定义泛型"></a>5.3 自定义泛型</h2><h2 id="5-4-泛型在继承上的体现"><a href="#5-4-泛型在继承上的体现" class="headerlink" title="5.4 泛型在继承上的体现"></a>5.4 泛型在继承上的体现</h2><p>List<String>并不是List<Object>的子类</p>
+<h2 id="5-5-通配符的使用"><a href="#5-5-通配符的使用" class="headerlink" title="5.5 通配符的使用"></a>5.5 通配符的使用</h2><p>使用类型通配符“？”</p>
+<p>读取安全</p>
+<p>写入不安全，但是可以写入null</p>
+<h1 id="第六章-IO流"><a href="#第六章-IO流" class="headerlink" title="第六章 IO流"></a>第六章 IO流</h1><h2 id="6-1-File类的使用"><a href="#6-1-File类的使用" class="headerlink" title="6.1 File类的使用"></a>6.1 File类的使用</h2><p>路径分隔符受到平台影响，要慎用，public static final String separator 能根据操作系统，动态提供分隔符</p>
+<p>File有获取文件信息、重命名、判断、创建、删除的功能</p>
+<h2 id="6-2-IO流原理及流的分类"><a href="#6-2-IO流原理及流的分类" class="headerlink" title="6.2 IO流原理及流的分类"></a>6.2 IO流原理及流的分类</h2><p>程序中打开的资源不属于内存中的而资源，垃圾回收机制无法回收，所以应该显式关闭IO资源</p>
+<h2 id="6-3-节点流"><a href="#6-3-节点流" class="headerlink" title="6.3 节点流"></a>6.3 节点流</h2><p>读取文件：</p>
+<ul>
+<li>建立一个流对象，将已经存在的一个文件加载进流</li>
+<li>创建一个临时存放数据的数组</li>
+<li>调用流对象的读取方法将流中的数据读入到数组中</li>
+<li>关闭资源</li>
+</ul>
+<p>写入文件：</p>
+<ul>
+<li>创建流对象，建立数据存放文件</li>
+<li>调用流对象的写入方法，将数据写入流</li>
+<li>关闭流资源，将流中的数据清空到文件中</li>
+</ul>
+<p>写入时，若有同名文件将被覆盖，但可以避免，补充true后会在文件内容末尾追加内容</p>
+<p>字节流（8）：mp3  avi  rmvb  mp4  jpg  doc  ppt</p>
+<p>字符流（16）：txt  java  c  cpp的源代码</p>
+<h2 id="6-4-缓冲流"><a href="#6-4-缓冲流" class="headerlink" title="6.4 缓冲流"></a>6.4 缓冲流</h2><p>缺省使用8Kb的缓冲区</p>
+<h2 id="6-5-转换流"><a href="#6-5-转换流" class="headerlink" title="6.5 转换流"></a>6.5 转换流</h2><p>按照字符集来转换</p>
+<h2 id="6-6-标准输入、输出流"><a href="#6-6-标准输入、输出流" class="headerlink" title="6.6 标准输入、输出流"></a>6.6 标准输入、输出流</h2><h2 id="6-7-打印流"><a href="#6-7-打印流" class="headerlink" title="6.7 打印流"></a>6.7 打印流</h2><p>将基本数据类型的数据格式转化为字符串输出</p>
+<h2 id="6-8-数据流"><a href="#6-8-数据流" class="headerlink" title="6.8 数据流"></a>6.8 数据流</h2><h2 id="6-9-对象流"><a href="#6-9-对象流" class="headerlink" title="6.9 对象流"></a>6.9 对象流</h2><p>用于存储基本数据类型数据或对象的处理流</p>
+<p>对象序列化机制：将对象转换成平台无关的二进制流</p>
+<h2 id="6-10-随机存取文件流"><a href="#6-10-随机存取文件流" class="headerlink" title="6.10 随机存取文件流"></a>6.10 随机存取文件流</h2><p>跳到指定位置，随机访问</p>
+<h2 id="6-11-NIO"><a href="#6-11-NIO" class="headerlink" title="6.11 NIO"></a>6.11 NIO</h2><h1 id="第七章-网络编程"><a href="#第七章-网络编程" class="headerlink" title="第七章 网络编程"></a>第七章 网络编程</h1><h2 id="7-1-网络编程概述"><a href="#7-1-网络编程概述" class="headerlink" title="7.1 网络编程概述"></a>7.1 网络编程概述</h2><h2 id="7-2-网络通信要素概述"><a href="#7-2-网络通信要素概述" class="headerlink" title="7.2 网络通信要素概述"></a>7.2 网络通信要素概述</h2><h2 id="7-3-IP和端口号"><a href="#7-3-IP和端口号" class="headerlink" title="7.3 IP和端口号"></a>7.3 IP和端口号</h2><p>InetAdress类，获得IP</p>
+<h2 id="7-4-网络协议"><a href="#7-4-网络协议" class="headerlink" title="7.4 网络协议"></a>7.4 网络协议</h2><p>TCP、UDP、Socket</p>
+<h2 id="7-5-TCP网络编程"><a href="#7-5-TCP网络编程" class="headerlink" title="7.5 TCP网络编程"></a>7.5 TCP网络编程</h2><p>客户端Socket的工作过程：</p>
+<ul>
+<li>创建Socket</li>
+<li>打开连接到Socket的输入输出流</li>
+<li>按照一定的协议对Socket进行读写操作</li>
+<li>关闭Socket</li>
+</ul>
+<p>服务端：</p>
+<ul>
+<li>调用ServerSocket</li>
+<li>调用accept</li>
+<li>调用该Socket类对象的getOutputStream和getInputStream</li>
+<li>关闭ServerSocket和Socket对象</li>
+</ul>
+<h2 id="7-6-UDP网络编程"><a href="#7-6-UDP网络编程" class="headerlink" title="7.6 UDP网络编程"></a>7.6 UDP网络编程</h2><p>流程：</p>
+<ul>
+<li>DatagramSocket和DatagramPacket</li>
+<li>建立发送端、接收端</li>
+<li>建立数据包</li>
+<li>调用Socket的发送、接受方法</li>
+<li>关闭Socket</li>
+</ul>
+<h2 id="7-7-URL编程"><a href="#7-7-URL编程" class="headerlink" title="7.7 URL编程"></a>7.7 URL编程</h2><p>URI：统一资源标识符</p>
+<p>URL：统一资源定位符</p>
+<p>URN：统一资源命名</p>
+<h1 id="第八章-Java反射机制"><a href="#第八章-Java反射机制" class="headerlink" title="第八章 Java反射机制"></a>第八章 Java反射机制</h1><h2 id="8-1-Java反射机制概述"><a href="#8-1-Java反射机制概述" class="headerlink" title="8.1 Java反射机制概述"></a>8.1 Java反射机制概述</h2><p>通过对象看到类的结构</p>
+<h2 id="8-2-获取Class类的实例"><a href="#8-2-获取Class类的实例" class="headerlink" title="8.2 获取Class类的实例"></a>8.2 获取Class类的实例</h2><h2 id="8-3-类的加载与ClassLoader的理解"><a href="#8-3-类的加载与ClassLoader的理解" class="headerlink" title="8.3 类的加载与ClassLoader的理解"></a>8.3 类的加载与ClassLoader的理解</h2><ul>
+<li>类的加载：将class字节码内容加载到内存中，并将这些静态数据转换成方法区的运行数据结构，然后生成一个代表这个类的Class对象，作为方法区中类数据的访问入口，所有需要访问和使用类数据只能通过这个Class对象，这个加载的过程需要类加载器参与</li>
+<li>类的链接：将Java类的二进制代码合并到JVM的运行状态之中的过程</li>
+<li>类的初始化：执行类构造器的过程，触发父类的初始化，保证让你更在多线程环境下的正确加锁和同步</li>
+</ul>
+<h2 id="8-4-创建运行时类的对象"><a href="#8-4-创建运行时类的对象" class="headerlink" title="8.4 创建运行时类的对象"></a>8.4 创建运行时类的对象</h2><h2 id="8-5-获取运行时类的完整结构"><a href="#8-5-获取运行时类的完整结构" class="headerlink" title="8.5 获取运行时类的完整结构"></a>8.5 获取运行时类的完整结构</h2><h2 id="8-6-调用运行时类的指定结构"><a href="#8-6-调用运行时类的指定结构" class="headerlink" title="8.6 调用运行时类的指定结构"></a>8.6 调用运行时类的指定结构</h2><h2 id="8-7-动态代理"><a href="#8-7-动态代理" class="headerlink" title="8.7 动态代理"></a>8.7 动态代理</h2><p>步骤：</p>
+<ul>
+<li>创建一个实现接口的类，必须实现invoke方法，以完成代理的具体操作</li>
+<li>创建被代理的类以及接口</li>
+<li>调用Proxy的静态方法</li>
+<li>通过Subject代理调用RealSubject实现类的方法</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/30/Java%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" data-id="ckd8r4snh0000vcv25le0dngi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/29/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java基础编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/30/Java%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/">Java高级编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/">Java基础编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BD%92%E7%BA%B3/">MySQL知识点归纳</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%E6%8F%90%E7%BA%B2/">计算机网络复习提纲</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E6%8F%90%E7%BA%B2/">计算机组成原理复习提纲</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
